@@ -277,6 +277,41 @@ describe('#utxo', () => {
       assert.equal(result.nullUtxos.length, 0)
     })
 
+    it('should have expected properties in slpUtxos.type1.tokens', async () => {
+      // mock dependencies 
+      sandbox
+        .stub(bchjs.Utxo.electrumx, 'utxo')
+        .resolves(mockData.fulcrumUtxos01)
+      sandbox
+        .stub(bchjs.Utxo.psfSlpIndexer, 'balance')
+        .resolves(mockData.psfSlpIndexerUtxos01)
+      sandbox
+        .stub(bchjs.Utxo.psfSlpIndexer, 'tx')
+        .resolves({ txData: { isValidSlp: false } })
+
+      // Mock function to return the same input. Good enough for this test.
+      sandbox.stub(bchjs.Utxo, 'hydrateTokenData').resolvesArg(0)
+
+      const addr = 'simpleledger:qrm0c67wwqh0w7wjxua2gdt2xggnm90xwsr5k22euj'
+
+      const result = await bchjs.Utxo.get(addr)
+      // console.log(`result-------------------------->: ${JSON.stringify(result, null, 2)}`)
+
+      //Assert expected properties exist in result.slpUtxos.type1
+      assert.property(result.slpUtxos.type1.tokens[0], 'height')
+      assert.property(result.slpUtxos.type1.tokens[0], 'tx_hash')
+      assert.property(result.slpUtxos.type1.tokens[0], 'tx_pos')
+      assert.property(result.slpUtxos.type1.tokens[0], 'value')
+      assert.property(result.slpUtxos.type1.tokens[0], 'txid')
+      assert.property(result.slpUtxos.type1.tokens[0], 'vout')
+      assert.property(result.slpUtxos.type1.tokens[0], 'isSlp')
+      assert.property(result.slpUtxos.type1.tokens[0], 'type')
+      assert.property(result.slpUtxos.type1.tokens[0], 'qty')
+      assert.property(result.slpUtxos.type1.tokens[0], 'tokenQty')
+      assert.property(result.slpUtxos.type1.tokens[0], 'tokenId')
+      assert.property(result.slpUtxos.type1.tokens[0], 'address')
+    })
+
     it('should handle an address with no SLP UTXOs', async () => {
       // mock dependencies
       sandbox
