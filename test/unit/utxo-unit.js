@@ -312,7 +312,6 @@ describe('#utxo', () => {
       assert.property(result.slpUtxos.type1.tokens[0], 'address')
     })
 
-
     it('should have expected properties in slpUtxos.type1.mintBatons', async () => {
       // mock dependencies
       sandbox
