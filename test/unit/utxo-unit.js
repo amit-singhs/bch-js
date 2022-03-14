@@ -278,7 +278,7 @@ describe('#utxo', () => {
     })
 
     it('should have expected properties in slpUtxos.type1.tokens', async () => {
-      // mock dependencies 
+      // mock dependencies
       sandbox
         .stub(bchjs.Utxo.electrumx, 'utxo')
         .resolves(mockData.fulcrumUtxos01)
@@ -297,7 +297,7 @@ describe('#utxo', () => {
       const result = await bchjs.Utxo.get(addr)
       // console.log(`result-------------------------->: ${JSON.stringify(result, null, 2)}`)
 
-      //Assert expected properties exist in result.slpUtxos.type1
+      // Assert expected properties exist in result.slpUtxos.type1
       assert.property(result.slpUtxos.type1.tokens[0], 'height')
       assert.property(result.slpUtxos.type1.tokens[0], 'tx_hash')
       assert.property(result.slpUtxos.type1.tokens[0], 'tx_pos')
