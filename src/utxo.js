@@ -12,7 +12,7 @@ const PsfSlpIndexer = require('./psf-slp-indexer')
 const BigNumber = require('bignumber.js')
 
 class UTXO {
-  constructor(config = {}) {
+  constructor (config = {}) {
     // Encapsulate dependencies for easier mocking.
     this.electrumx = new Electrumx(config)
     this.slp = new Slp(config)
@@ -185,7 +185,7 @@ class UTXO {
    *
    *
    */
-  async getOld(address, useWhitelist = false) {
+  async getOld (address, useWhitelist = false) {
     try {
       if (!address) {
         throw new Error('Address must be an array or a string')
@@ -342,7 +342,7 @@ class UTXO {
   // get() function that uses SLPDB.
   // TODO: NFT UTXOs are identified as non-token UTXOs, which will cause a wallet
   // to burn them. The psf-slp-indexer needs to be updated to mark these UTXOs.
-  async get(address) {
+  async get (address) {
     try {
       // Convert address to an array if it is a string.
       if (typeof address !== 'string') {
@@ -393,7 +393,6 @@ class UTXO {
             thisUtxo.isSlp = true
             thisUtxo.type = thisSlpUtxo.type
             thisUtxo.qty = thisSlpUtxo.qty
-            thisUtxo.tokenQty = thisSlpUtxo.qty
             thisUtxo.tokenId = thisSlpUtxo.tokenId
             thisUtxo.address = thisSlpUtxo.address
 
@@ -458,7 +457,7 @@ class UTXO {
 
   // Hydrate an array of token UTXOs with token information.
   // Returns an array of token UTXOs with additional data.
-  async hydrateTokenData(utxoAry) {
+  async hydrateTokenData (utxoAry) {
     try {
       // console.log('utxoAry: ', utxoAry)
 
@@ -543,7 +542,7 @@ class UTXO {
    *  }
    */
   // Returns the utxo with the biggest balance from an array of utxos.
-  findBiggestUtxo(utxos) {
+  findBiggestUtxo (utxos) {
     let largestAmount = 0
     let largestIndex = 0
 
