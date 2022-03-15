@@ -343,6 +343,7 @@ describe('#utxo', () => {
       assert.property(result.slpUtxos.type1.mintBatons[0], 'type')
       assert.property(result.slpUtxos.type1.mintBatons[0], 'qty')
       assert.property(result.slpUtxos.type1.mintBatons[0], 'tokenQty')
+      assert.equal(result.slpUtxos.type1.mintBatons[0].qty, result.slpUtxos.type1.mintBatons[0].tokenQty)
       assert.property(result.slpUtxos.type1.mintBatons[0], 'tokenId')
       assert.property(result.slpUtxos.type1.mintBatons[0], 'address')
     })
