@@ -123,6 +123,7 @@ class UTXO {
             thisUtxo.isSlp = true
             thisUtxo.type = thisSlpUtxo.type
             thisUtxo.qty = thisSlpUtxo.qty
+            thisUtxo.tokenQty = thisSlpUtxo.qty
             thisUtxo.tokenId = thisSlpUtxo.tokenId
             thisUtxo.address = thisSlpUtxo.address
 
